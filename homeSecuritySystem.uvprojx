@@ -259,17 +259,17 @@
                 <Size>0x0</Size>
               </XRAM>
               <OCR_RVCT1>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT1>
               <OCR_RVCT2>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT2>
               <OCR_RVCT3>
-                <Type>0</Type>
+                <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
                 <Size>0x0</Size>
               </OCR_RVCT3>
@@ -402,6 +402,16 @@
               <FileName>serial.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\serial.h</FilePath>
+            </File>
+            <File>
+              <FileName>tilt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\tilt.c</FilePath>
+            </File>
+            <File>
+              <FileName>tilt.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\tilt.h</FilePath>
             </File>
           </Files>
         </Group>

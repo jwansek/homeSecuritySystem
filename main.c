@@ -8,6 +8,7 @@
 #include "stdbool.h"
 #include "serial.h"
 #include "main.h"
+#include "tilt.h"
 
 /* USART1 init function */
 void USART1_Init(void) {
@@ -31,11 +32,17 @@ void USART1_Init(void) {
 int main(void) {
 	USART1_Init();
 	HAL_UART_MspInit(&huart1);
+	tilt_pins_Init();
 	
-	char data[33];
+	unsigned char data[33];
 	uint64_t c = 0;
 	while (1) {
-		sprintf(data, "0001/9j/4AAQSkZJRgABAQECWAJYAA\n", c++);
+		// sprintf(data, "0001/9j/4AAQSkZJRgABAQECWAJYAA\n", c++);
+		if (isTilted()) {
+			sprintf(data, "is tilted - %d\n", c++);
+		} else {
+			sprintf(data, "is not tilted - %d\n", c++);
+		}
 		HAL_UART_Transmit(&huart1, data, sizeof(data), 100);
 	}
 }

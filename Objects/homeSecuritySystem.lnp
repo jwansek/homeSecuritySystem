@@ -1,6 +1,7 @@
 --cpu Cortex-M7.fp.sp
 ".\objects\main.o"
 ".\objects\serial.o"
+".\objects\tilt.o"
 ".\objects\usart_stm32f7xx.o"
 ".\objects\stm32f7xx_hal.o"
 ".\objects\stm32f7xx_hal_cortex.o"

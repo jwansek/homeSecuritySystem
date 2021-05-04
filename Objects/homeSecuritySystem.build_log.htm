@@ -17,7 +17,7 @@ Library Manager: ArmAr.exe V6.15
 Hex Converter:   FromElf.exe V6.15
 CPU DLL:         SARMCM3.DLL V5.33.0.0
 Dialog DLL:      DCM.DLL V1.17.3.0
-Target DLL:      UL2CM3.DLL V1.163.9.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.8.0
 Dialog DLL:      TCM.DLL V1.48.0.0
  
 <h2>Project:</h2>
@@ -27,10 +27,7 @@ Project File Date:  05/04/2021
 <h2>Output:</h2>
 *** Using Compiler 'V6.15', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Rebuild target 'Target 1'
-main.c(9): warning: In file included from...
-./serial.h(18): warning: no newline at end of file [-Wnewline-eof]
-#endif
-      ^
+compiling tilt.c...
 main.c(10): warning: In file included from...
 ./main.h(4): warning: 'static' ignored on this declaration [-Wmissing-declarations]
 static enum ALARM_STATE{LOCKED=0x00, UNLOCKED=0x01, TRIGGERED=0x10, ALARM=0x11};
@@ -53,28 +50,29 @@ C:/Users/eden/AppData/Local/Arm/Packs/Keil/STM32F7xx_DFP/2.14.0/Drivers/STM32F7x
 C:/Users/eden/AppData/Local/Arm/Packs/Keil/STM32F7xx_DFP/2.14.0/Drivers/STM32F7xx_HAL_Driver/Inc\stm32f7xx_hal_dma.h(148): warning: padding struct 'struct __DMA_HandleTypeDef' with 2 bytes to align 'Parent' [-Wpadded]
   void                       *Parent;                                                      /*!< Parent object state                    */ 
                               ^
-main.c(38): warning: implicitly declaring library function 'sprintf' with type 'int (char *, const char *, ...)' [-Wimplicit-function-declaration]
-                sprintf(data, "0001/9j/4AAQSkZJRgABAQECWAJYAA\n", c++);
-                ^
-main.c(38): note: include the header <stdio.h> or explicitly provide a declaration for 'sprintf'
-main.c(38): warning: data argument not used by format string [-Wformat-extra-args]
-                sprintf(data, "0001/9j/4AAQSkZJRgABAQECWAJYAA\n", c++);
-                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ^
-main.c(39): warning: passing 'char [33]' to parameter of type 'uint8_t *' (aka 'unsigned char *') converts between pointers to integer types with different sign [-Wpointer-sign]
-                HAL_UART_Transmit(&huart1, data, sizeof(data), 100);
-                                           ^~~~
-C:/Users/eden/AppData/Local/Arm/Packs/Keil/STM32F7xx_DFP/2.14.0/Drivers/STM32F7xx_HAL_Driver/Inc\stm32f7xx_hal_uart.h(1434): note: passing argument to parameter 'pData' here
-HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
-                                                                        ^
-main.c(41): warning: no newline at end of file [-Wnewline-eof]
+main.c(42): warning: implicitly declaring library function 'sprintf' with type 'int (char *, const char *, ...)' [-Wimplicit-function-declaration]
+                        sprintf(data, "is tilted - %d\n", c++);
+                        ^
+main.c(42): note: include the header <stdio.h> or explicitly provide a declaration for 'sprintf'
+main.c(42): warning: passing 'unsigned char [33]' to parameter of type 'char *' converts between pointers to integer types with different sign [-Wpointer-sign]
+                        sprintf(data, "is tilted - %d\n", c++);
+                                ^~~~
+main.c(42): warning: format specifies type 'int' but the argument has type 'uint64_t' (aka 'unsigned long long') [-Wformat]
+                        sprintf(data, "is tilted - %d\n", c++);
+                                                   ~~     ^~~
+                                                   %llu
+main.c(44): warning: passing 'unsigned char [33]' to parameter of type 'char *' converts between pointers to integer types with different sign [-Wpointer-sign]
+                        sprintf(data, "is not tilted - %d\n", c++);
+                                ^~~~
+main.c(44): warning: format specifies type 'int' but the argument has type 'uint64_t' (aka 'unsigned long long') [-Wformat]
+                        sprintf(data, "is not tilted - %d\n", c++);
+                                                       ~~     ^~~
+                                                       %llu
+main.c(48): warning: no newline at end of file [-Wnewline-eof]
 }
  ^
-10 warnings generated.
+11 warnings generated.
 compiling main.c...
-serial.c(6): warning: In file included from...
-./serial.h(18): warning: no newline at end of file [-Wnewline-eof]
-#endif
-      ^
 serial.c(9): warning: In file included from...
 ./main.h(4): warning: 'static' ignored on this declaration [-Wmissing-declarations]
 static enum ALARM_STATE{LOCKED=0x00, UNLOCKED=0x01, TRIGGERED=0x10, ALARM=0x11};
@@ -116,8 +114,9 @@ serial.c(45): warning: unused variable 'numPackets' [-Wunused-variable]
 serial.c(49): warning: comparison of integers of different signs: 'int' and 'uint32_t' (aka 'unsigned int') [-Wsign-compare]
     for (int i = 0; i < len; i += 26) {
                     ~ ^ ~~~
-11 warnings generated.
+10 warnings generated.
 compiling serial.c...
+compiling stm32f7xx_hal.c...
 C:/Users/eden/AppData/Local/Arm/Packs/Keil/STM32F7xx_DFP/2.14.0/CMSIS/Driver/USART_STM32F7xx.c(144): warning: In file included from...
 C:/Users/eden/AppData/Local/Arm/Packs/Keil/STM32F7xx_DFP/2.14.0/CMSIS/Driver/USART_STM32F7xx.h(35): warning: In file included from...
 C:/Users/eden/AppData/Local/Arm/Packs/Keil/STM32F7xx_DFP/2.14.0/Drivers/STM32F7xx_HAL_Driver/Inc\stm32f7xx_ll_rcc.h(2748): warning: unused parameter 'LPTIMx' [-Wunused-parameter]
@@ -136,7 +135,6 @@ typedef struct __ALIGNED(32) {
         ^
 3 warnings generated.
 compiling USART_STM32F7xx.c...
-compiling stm32f7xx_hal.c...
 C:/Users/eden/AppData/Local/Arm/Packs/Keil/STM32F7xx_DFP/2.14.0/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_cortex.c(217): warning: function 'HAL_NVIC_SystemReset' could be declared with attribute 'noreturn' [-Wmissing-noreturn]
 {
 ^
@@ -366,6 +364,7 @@ __STATIC_INLINE uint32_t LL_RCC_GetLPTIMClockSource(uint32_t LPTIMx)
                                                              ^
 1 warning generated.
 compiling stm32f7xx_ll_utils.c...
+compiling system_stm32f7xx.c...
 C:/Users/eden/AppData/Local/Arm/Packs/Keil/STM32F7xx_DFP/2.14.0/Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_ll_rcc.c(22): warning: In file included from...
 C:/Users/eden/AppData/Local/Arm/Packs/Keil/STM32F7xx_DFP/2.14.0/Drivers/STM32F7xx_HAL_Driver/Inc\stm32f7xx_ll_rcc.h(2748): warning: unused parameter 'LPTIMx' [-Wunused-parameter]
 __STATIC_INLINE uint32_t LL_RCC_GetLPTIMClockSource(uint32_t LPTIMx)
@@ -378,9 +377,8 @@ uint32_t LL_RCC_GetSPDIFRXClockFreq(uint32_t SPDIFRXxSource)
                                              ^
 3 warnings generated.
 compiling stm32f7xx_ll_rcc.c...
-compiling system_stm32f7xx.c...
 linking...
-Program Size: Code=4442 RO-data=630 RW-data=4 ZI-data=1864  
+Program Size: Code=5088 RO-data=632 RW-data=4 ZI-data=1864  
 ".\Objects\homeSecuritySystem.axf" - 0 Error(s), 81 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -500,7 +498,7 @@ Package Vendor: Keil
       Include file:  Drivers\CMSIS\Device\ST\STM32F7xx\Include\stm32f7xx.h
       Source file:   Drivers\CMSIS\Device\ST\STM32F7xx\Source\Templates\arm\startup_stm32f746xx.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F7xx\Source\Templates\system_stm32f7xx.c
-Build Time Elapsed:  00:00:15
+Build Time Elapsed:  00:00:19
 </pre>
 </body>
 </html>
