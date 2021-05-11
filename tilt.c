@@ -14,8 +14,18 @@ void tilt_pins_Init(void) {
 	gpio.Pin = GPIO_PIN_3;
 	
 	HAL_GPIO_Init(GPIOI, &gpio);
+	
+	resetTilt();
+}
+
+void resetTilt(void) {
+	initTiltState = isTilted();
 }
 
 bool isTilted(void) {
 	return HAL_GPIO_ReadPin(GPIOI, GPIO_PIN_3);
+}
+
+bool isTiltTriggered(void) {
+	return !(initTiltState == isTilted());
 }

@@ -1,16 +1,25 @@
+#include <stdio.h>
 #include "stm32f7xx_hal.h"
-#include "stm32f7xx_hal_rcc.h"
-#include "stm32f7xx_hal_usart.h"
-#include "stm32f7xx_hal_uart.h"
-#include "stm32f7xx_hal_gpio.h"
-#include "string.h"
-#include "stdint.h"
-#include "stdbool.h"
+#include "GLCD_Config.h"
+#include "Board_GLCD.h"
+#include "Board_Touch.h"
+#include "screen.h"
 #include "serial.h"
-#include "main.h"
 #include "tilt.h"
+#include "membrane.h"
 
-/* USART1 init function */
+#define wait_delay HAL_Delay
+extern GLCD_FONT GLCD_Font_6x8;
+extern GLCD_FONT GLCD_Font_16x24;
+
+
+#ifdef __RTX
+extern uint32_t os_time;
+uint32_t HAL_GetTick(void) {
+	return os_time;
+}
+#endif
+
 void USART1_Init(void) {
   huart1.Instance = USART1;
   huart1.Init.BaudRate = 115200;
@@ -28,21 +37,42 @@ void USART1_Init(void) {
   }
 }
 
+void wait(uint64_t iters) {
+	volatile uint64_t count = 0;
+	for (uint64_t i = 0; i < iters; i++) {
+		count += i * 2 * i;
+	}
+}
 
 int main(void) {
+	screen_Init();
+	
 	USART1_Init();
 	HAL_UART_MspInit(&huart1);
 	tilt_pins_Init();
+	initializeMembranePins();
+	
+	enum ALARM_STATE alarm_state = UNLOCKED;
 	
 	unsigned char data[33];
-	uint64_t c = 0;
 	while (1) {
-		// sprintf(data, "0001/9j/4AAQSkZJRgABAQECWAJYAA\n", c++);
-		if (isTilted()) {
-			sprintf(data, "is tilted - %d\n", c++);
+			
+		if (isTiltTriggered()) {
+			alarm_state = TRIGGERED;
+			int membraneNum = getInput();
+			if (membraneNum != -1) {
+				drawCodeBoxNumber(codeCursor++, membraneNum);
+				membraneNum = -1;
+				wait(1000000);
+			}
+			
 		} else {
-			sprintf(data, "is not tilted - %d\n", c++);
+			alarm_state = UNLOCKED;
 		}
+		
+		setStateScreen(alarm_state);
+		sprintf(data, "%d\n", alarm_state);
 		HAL_UART_Transmit(&huart1, data, sizeof(data), 100);
 	}
+	
 }
