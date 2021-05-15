@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "stm32f7xx_hal.h"
+#include "cmsis_os.h"
 #include "GLCD_Config.h"
 #include "Board_GLCD.h"
 #include "Board_Touch.h"
@@ -7,6 +8,7 @@
 #include "serial.h"
 #include "tilt.h"
 #include "membrane.h"
+#include "7seg.h"
 
 #define wait_delay HAL_Delay
 extern GLCD_FONT GLCD_Font_6x8;
@@ -51,28 +53,54 @@ int main(void) {
 	HAL_UART_MspInit(&huart1);
 	tilt_pins_Init();
 	initializeMembranePins();
-	
-	enum ALARM_STATE alarm_state = UNLOCKED;
+	initSegments();
+	enum ALARM_STATE lastState = UNLOCKED;
+	displayNum(alarm_state);
 	
 	unsigned char data[33];
 	while (1) {
-			
-		if (isTiltTriggered()) {
+		
+		if (alarm_state == UNLOCKED && clickedOnLockButton()) {
+			alarm_state = LOCKED;
+		} else if (alarm_state == LOCKED && isTiltTriggered()) {
 			alarm_state = TRIGGERED;
+		} else if (alarm_state == TRIGGERED) {
+			
 			int membraneNum = getInput();
 			if (membraneNum != -1) {
-				drawCodeBoxNumber(codeCursor++, membraneNum);
-				membraneNum = -1;
-				wait(1000000);
+				while (getInput() != -1) {
+					wait(100000);		// wait for user to depress the key
+				}
+				setCodeDigitNumber(codeCursor++, membraneNum);
+				if (codeIsFull()) {
+					setStateScreen(alarm_state);
+					if (checkCodeCorrect()) {
+						drawCorrectCode();
+						wait(10000000);
+						resetCodeDigits();
+						clearCorrectCodeIndicator();
+						alarm_state = UNLOCKED;
+						resetTilt();
+					} else {
+						drawIncorrectCode();
+						wait(10000000);
+						resetCodeDigits();
+						clearCorrectCodeIndicator();
+						alarm_state = ALARM;
+					}
+				}
 			}
-			
-		} else {
-			alarm_state = UNLOCKED;
 		}
 		
 		setStateScreen(alarm_state);
-		sprintf(data, "%d\n", alarm_state);
+		sprintf(data, "%d [%d%d%d%d]\n", alarm_state, codeArr[0], codeArr[1], codeArr[2], codeArr[3]);
 		HAL_UART_Transmit(&huart1, data, sizeof(data), 100);
+		
+		if (lastState != alarm_state) {
+			displayNum(alarm_state);
+		}
+		
+		lastState = alarm_state;
 	}
 	
 }

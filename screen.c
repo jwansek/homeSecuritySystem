@@ -72,25 +72,77 @@ void drawLockButton(uint32_t colour) {
 	GLCD_DrawRectangle(3, 63, 67, 21);
 }
 
+bool clickedOnLockButton() {
+	Touch_GetState(&tsc_state);
+	if (tsc_state.pressed) {
+		if (tsc_state.x  >= 3 && tsc_state.x <= 70 && tsc_state.y >= 63 && tsc_state.y <= 63 + 21) {
+			return true;
+		}
+	}
+	return false;
+}
+
 void drawCodeBoxes(uint32_t colour) {
 	GLCD_SetForegroundColor(colour);
 	for (uint16_t i = 0; i < 4; i++) {
-		GLCD_DrawHLine(3 + (i * 20) + 1, 63 + 23, 14);
 		if (colour != GLCD_COLOR_NAVY) {
-			drawCodeBoxNumber(i, -1);
+			GLCD_DrawString(3 + (i * 20), 63 + 1, " ");
+			GLCD_DrawHLine(3 + (i * 20) + 1, 63 + 23, 14);
+		} else {
+			if (codeArr[i] != -1 && codeArr[i] != NULL) {
+				char buf[8];
+				sprintf(buf, "%d", codeArr[i]);
+				GLCD_DrawString(3 + (i * 20), 63 + 1, buf);
+			} else {
+				GLCD_DrawHLine(3 + (i * 20) + 1, 63 + 23, 14);
+			}
 		}
 	}
 }
 
-void drawCodeBoxNumber(uint16_t cursor, int digit) {
-	if (digit == -1) {
-		GLCD_DrawString(3 + (cursor * 20), 63 + 1, " ");
-	} else {
-		char buf[8];
-		sprintf(buf, "%d", digit);
-		GLCD_DrawString(3 + (cursor * 20), 63 + 1, buf);
-	}
+void setCodeDigitNumber(uint16_t cursor, int digit) {
 	codeArr[cursor] = digit;
+}
+
+void resetCodeDigits() {
+	codeCursor = 0;
+	for (int i = 0; i < 4; i++) {
+		codeArr[i] = -1;
+	}
+}
+
+bool codeIsFull() {
+	bool isFull = true;
+	for (int i = 0; i < 4; i++) {
+		if (codeArr[i] == -1 || codeArr[i] == NULL) {
+			isFull = false;
+		}
+	}
+	return isFull;
+}
+
+bool checkCodeCorrect() {
+	bool isCorrect = true;
+	for (int i = 0; i < 4; i++) {
+		if (codeArr[i] != correctCode[i]) {
+			isCorrect = false;
+		}
+	}
+	return isCorrect;
+}
+
+void drawCorrectCode() {
+	GLCD_SetForegroundColor(GLCD_COLOR_GREEN);
+	GLCD_DrawString(3, 90, "Unlocking...");
+}
+
+void drawIncorrectCode() {
+	GLCD_SetForegroundColor(GLCD_COLOR_RED);
+	GLCD_DrawString(3, 90, "Incorrect   ");
+}
+
+void clearCorrectCodeIndicator() {
+	GLCD_DrawString(3, 90, "            ");
 }
 
 void setStateScreen(enum ALARM_STATE state) {

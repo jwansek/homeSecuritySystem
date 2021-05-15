@@ -1,3 +1,9 @@
+Objects/
+RTE/
+DebugConfig/
+Listings/
+
+
 # Prerequisites
 *.d
 
