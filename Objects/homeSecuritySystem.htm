@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\Objects\homeSecuritySystem.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\homeSecuritySystem.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6150002: Last Updated: Sat May 15 21:27:00 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6150002: Last Updated: Sun May 16 15:08:07 2021
 <BR><P>
-<H3>Maximum Stack Usage =        424 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        416 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; clickedOnLockButton &rArr; Touch_GetState &rArr; BSP_TS_GetState &rArr; ft5336_TS_GetTouchInfo &rArr; TS_IO_Read &rArr; I2Cx_ReadMultiple &rArr; HAL_I2C_Mem_Read &rArr; I2C_RequestMemoryRead &rArr; I2C_WaitOnTXISFlagUntilTimeout &rArr; I2C_IsAcknowledgeFailed
 <P>
@@ -321,7 +321,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[9d]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 424 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 416 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; clickedOnLockButton &rArr; Touch_GetState &rArr; BSP_TS_GetState &rArr; ft5336_TS_GetTouchInfo &rArr; TS_IO_Read &rArr; I2Cx_ReadMultiple &rArr; HAL_I2C_Mem_Read &rArr; I2C_RequestMemoryRead &rArr; I2C_WaitOnTXISFlagUntilTimeout &rArr; I2C_IsAcknowledgeFailed
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -984,7 +984,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawLockButton
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawCodeBoxes
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setStateScreen
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setStateScreen
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;screen_Init
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawIncorrectCode
 <LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawCorrectCode
@@ -1019,7 +1019,7 @@ Global Symbols
 <P><STRONG><a name="[119]"></a>GLCD_SetForegroundColor</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, glcd_746g_discovery.o(.text.GLCD_SetForegroundColor))
 <BR><BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawLockButton
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawCodeBoxes
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setStateScreen
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setStateScreen
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;screen_Init
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawIncorrectCode
 <LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawCorrectCode
@@ -1480,7 +1480,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_postli_1
 </UL>
 
-<P><STRONG><a name="[131]"></a>checkCodeCorrect</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, screen.o(.text.checkCodeCorrect))
+<P><STRONG><a name="[132]"></a>checkCodeCorrect</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, screen.o(.text.checkCodeCorrect))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = checkCodeCorrect
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -1502,7 +1502,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[12f]"></a>codeIsFull</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, screen.o(.text.codeIsFull))
+<P><STRONG><a name="[130]"></a>codeIsFull</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, screen.o(.text.codeIsFull))
 <BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1527,7 +1527,7 @@ Global Symbols
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GLCD_DrawHLine
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2sprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setStateScreen
+<BR>[Called By]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setStateScreen
 </UL>
 
 <P><STRONG><a name="[11a]"></a>drawCorrectCode</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, screen.o(.text.drawCorrectCode))
@@ -1555,7 +1555,7 @@ Global Symbols
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GLCD_DrawString
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GLCD_DrawRectangle
 </UL>
-<BR>[Called By]<UL><LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setStateScreen
+<BR>[Called By]<UL><LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setStateScreen
 </UL>
 
 <P><STRONG><a name="[7e]"></a>ft5336_Init</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, ft5336.o(.text.ft5336_Init))
@@ -1686,17 +1686,17 @@ Global Symbols
 <LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isTiltTriggered
 </UL>
 
-<P><STRONG><a name="[7c]"></a>main</STRONG> (Thumb, 328 bytes, Stack size 48 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 424 + Unknown Stack Size
+<P><STRONG><a name="[7c]"></a>main</STRONG> (Thumb, 352 bytes, Stack size 40 bytes, main.o(.text.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 416 + Unknown Stack Size
 <LI>Call Chain = main &rArr; clickedOnLockButton &rArr; Touch_GetState &rArr; BSP_TS_GetState &rArr; ft5336_TS_GetTouchInfo &rArr; TS_IO_Read &rArr; I2Cx_ReadMultiple &rArr; HAL_I2C_Mem_Read &rArr; I2C_RequestMemoryRead &rArr; I2C_WaitOnTXISFlagUntilTimeout &rArr; I2C_IsAcknowledgeFailed
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
+<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tilt_pins_Init
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setStateScreen
-<LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCodeDigitNumber
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setStateScreen
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setCodeDigitNumber
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;screen_Init
 <LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;resetTilt
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;resetCodeDigits
+<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;resetCodeDigits
 <LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isTiltTriggered
 <LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeMembranePins
 <LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initSegments
@@ -1704,10 +1704,10 @@ Global Symbols
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawIncorrectCode
 <LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawCorrectCode
 <LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;displayNum
-<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;codeIsFull
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;codeIsFull
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clickedOnLockButton
 <LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clearCorrectCodeIndicator
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkCodeCorrect
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkCodeCorrect
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Init
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
@@ -1742,7 +1742,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getInput
 </UL>
 
-<P><STRONG><a name="[132]"></a>resetCodeDigits</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, screen.o(.text.resetCodeDigits))
+<P><STRONG><a name="[12d]"></a>resetCodeDigits</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, screen.o(.text.resetCodeDigits))
 <BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1783,7 +1783,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_Init
 </UL>
 
-<P><STRONG><a name="[12e]"></a>setCodeDigitNumber</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, screen.o(.text.setCodeDigitNumber))
+<P><STRONG><a name="[12f]"></a>setCodeDigitNumber</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, screen.o(.text.setCodeDigitNumber))
 <BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1803,7 +1803,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getInput
 </UL>
 
-<P><STRONG><a name="[130]"></a>setStateScreen</STRONG> (Thumb, 204 bytes, Stack size 8 bytes, screen.o(.text.setStateScreen))
+<P><STRONG><a name="[131]"></a>setStateScreen</STRONG> (Thumb, 204 bytes, Stack size 8 bytes, screen.o(.text.setStateScreen))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
 <LI>Call Chain = setStateScreen &rArr; drawCodeBoxes &rArr; __2sprintf &rArr; _printf_char_common &rArr; __printf
 </UL>
@@ -1849,7 +1849,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getInput
 </UL>
 
-<P><STRONG><a name="[12d]"></a>wait</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, main.o(.text.wait))
+<P><STRONG><a name="[12e]"></a>wait</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, main.o(.text.wait))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = wait
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main

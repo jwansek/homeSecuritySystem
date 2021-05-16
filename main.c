@@ -56,15 +56,27 @@ int main(void) {
 	initSegments();
 	enum ALARM_STATE lastState = UNLOCKED;
 	displayNum(alarm_state);
+	volatile unsigned int trigger_count = 0;
+		
 	
 	unsigned char data[33];
 	while (1) {
 		
 		if (alarm_state == UNLOCKED && clickedOnLockButton()) {
 			alarm_state = LOCKED;
+			trigger_count = 0;
 		} else if (alarm_state == LOCKED && isTiltTriggered()) {
 			alarm_state = TRIGGERED;
+			trigger_count = 0;
 		} else if (alarm_state == TRIGGERED) {
+			
+			if (trigger_count >= 2000) {
+				resetCodeDigits();
+				clearCorrectCodeIndicator();
+				alarm_state = ALARM;
+				trigger_count = 0;
+				continue;
+			}
 			
 			int membraneNum = getInput();
 			if (membraneNum != -1) {
@@ -90,10 +102,11 @@ int main(void) {
 					}
 				}
 			}
+			trigger_count++;
 		}
 		
 		setStateScreen(alarm_state);
-		sprintf(data, "%d [%d%d%d%d]\n", alarm_state, codeArr[0], codeArr[1], codeArr[2], codeArr[3]);
+		sprintf(data, "%d\n", alarm_state);
 		HAL_UART_Transmit(&huart1, data, sizeof(data), 100);
 		
 		if (lastState != alarm_state) {

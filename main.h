@@ -8,7 +8,7 @@ static enum ALARM_STATE alarm_state = UNLOCKED;
 
 void USART1_Init(void);
 void wait(uint64_t iters);
-void countdownThread(void);
+void countDownThread(void const * argument);
 
 
 #endif
